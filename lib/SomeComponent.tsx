@@ -1,0 +1,27 @@
+import { ReactNode, useContext, useState } from "react";
+import { UserContext } from "./main";
+
+export const Component5 = () => {
+  const user = useContext(UserContext);
+
+  return (
+    <>
+      <h1>Component 5 - Lib A</h1>
+      <h2>{`Hello ${user} again!`}</h2>
+    </>
+  );
+}
+
+
+export const Component1 = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState("Jesse Hall");
+
+  return (
+    <UserContext.Provider value={user}>
+      <h1>{`Hello ${user}! - Lib A`}</h1>
+      <Component5 />
+      <button onClick={() => setUser('Jesu')}>Change to Jesu</button>
+      {children}
+    </UserContext.Provider>
+  );
+}
