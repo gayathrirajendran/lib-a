@@ -1,15 +1,19 @@
-import { ReactNode, useContext, useState } from "react";
-import { UserContext } from "./main";
+import { ReactNode, useState } from "react";
+import { accessTokenVar, UserContext } from "./main";
+import { useReactiveVar } from "@apollo/client";
 
 export const Component5 = () => {
-  const user = useContext(UserContext);
+  // const user = useContext(UserContext);
 
-  return (
-    <>
-      <h1>Component 5 - Lib A</h1>
-      <h2>{`Hello ${user} again!`}</h2>
-    </>
-  );
+  // return (
+  //   <>
+  //     <h1>Component 5 - Lib A</h1>
+  //     <h2>{`Hello ${user} again!`}</h2>
+  //   </>
+  // );
+  const user = useReactiveVar(accessTokenVar);
+
+  return <div>Library A: {JSON.stringify(user)}</div>
 }
 
 
