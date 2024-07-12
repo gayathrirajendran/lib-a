@@ -5,6 +5,7 @@ import dts from 'vite-plugin-dts'
 import { extname, relative } from 'path'
 import { fileURLToPath } from 'node:url'
 import { glob } from 'glob'
+import pkg from './package.json';
 
 
 // https://vitejs.dev/config/
@@ -12,7 +13,7 @@ export default defineConfig({
   plugins: [react(), dts({ include: ['lib'] })],
   build: {
     rollupOptions: {
-      external: ['react', 'react/jsx-runtime'],
+      external: Object.keys(pkg.peerDependencies),
       input: Object.fromEntries(
         glob.sync('lib/**/*.{ts,tsx}').map(file => [
           // The name of the entry point
